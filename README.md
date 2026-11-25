@@ -1,6 +1,6 @@
 # Learning Platform Frontend
 
-A starter workspace for two independent frontend tasks: a checkout summary and reusable legal pages. **Both tasks are unfinished.** The repository provides the shared app shell, typed contracts, synthetic demo fixtures, and placeholder components for members to implement.
+A shared workspace for two independent frontend tasks: a checkout summary and reusable legal pages. **Both tasks are implemented and ready for review.** The repository includes the shared app shell, typed contracts, synthetic demo fixtures, a working checkout component, and a reusable bilingual legal page template.
 
 ## Local setup
 
@@ -21,19 +21,19 @@ npm run lint
 npm test
 ```
 
-The starter passes all three checks, including three shared language/currency tests. Its routes and English/Arabic layouts were also checked on desktop and mobile. Feature-specific tests remain each member's responsibility. GitHub Actions runs lint, tests, and the build for pull requests and updates to `main`.
+The test suite includes shared language/currency checks and checkout tests. Record the latest build, lint, and test results with your changes. GitHub Actions runs lint, tests, and the build for pull requests and updates to `main`.
 
 ## Preview routes
 
 | Route | Purpose |
 | --- | --- |
 | `/` | Task navigation |
-| `/checkout` | Checkout placeholder and demo data |
-| `/legal/terms` | Terms placeholder |
-| `/legal/privacy` | Privacy placeholder |
-| `/legal/refund` | Refund placeholder |
+| `/checkout` | Live checkout demo (`WELCOME20`) and four sample states: default, applying, applied, and error |
+| `/legal/terms` | Terms of Service demo |
+| `/legal/privacy` | Privacy Policy demo |
+| `/legal/refund` | Refund Policy demo |
 
-`/legal` redirects to `/legal/terms`. The legal demos contain six sections with placeholder text; they are not policies for actual use.
+`/legal` and unknown legal document types redirect to `/legal/terms`. Each legal demo contains six bilingual sections with placeholder text, a localized update date, table-of-contents jump links, a language switch, and print styling. Approved legal text must still be supplied by the company.
 
 ## Structure and task ownership
 
@@ -43,7 +43,9 @@ src/
   features/
     checkout/
       CheckoutSummary.tsx
+      CheckoutSummary.test.tsx
       CheckoutDemo.tsx
+      pricing.ts
       types.ts
       mocks.ts
       README.md
@@ -62,8 +64,8 @@ src/
       TaskPlaceholder.tsx
 ```
 
-- **Checkout:** implement `CheckoutSummary` inside `src/features/checkout/`. Its contract includes item and coupon data, a bilingual error, `lang`, coupon/payment callbacks, and `isApplyingCoupon` for loading and disabling payment during coupon application. The member implements the checkout UI and calculation/display of included VAT at 15%; the skeleton supplies no VAT helper.
-- **Legal:** implement `LegalPage` inside `src/features/legal/`. Its contract includes the title, update date, sections with Markdown bodies, `lang`, and a required `onLangChange` callback for the controlled language switch. The member implements the content layout, table-of-contents anchors, phone layout, and print styling.
+- **Checkout — implemented:** `CheckoutSummary` inside `src/features/checkout/` displays item pricing, coupon Apply/Remove controls, discounts, totals, and included VAT at 15%. `pricing.ts` calculates integer-halala totals and extracts VAT without adding it again. Props supply item and coupon data, a bilingual error, `lang`, coupon/payment callbacks, and `isApplyingCoupon` for loading and disabling payment during coupon application. The live demo accepts `WELCOME20` for 20% off; other codes show an error, and Pay logs its callback without making a payment.
+- **Legal — implemented:** `LegalPage` inside `src/features/legal/` renders the title, update date, six-section sample documents, table-of-contents anchors, and back-to-top links in English/LTR or Arabic/RTL. Its contract accepts the title, update date, sections with Markdown bodies, `lang`, and a required `onLangChange` callback for the controlled language switch. `LegalDemo` selects the Terms, Privacy, or Refund fixture by route. Markdown support covers paragraphs, ordered/unordered lists, bold, italic, and inline code; links, headings, and other Markdown syntax are not parsed. The layout includes phone and print styling; see the feature README for verification status.
 
 Read the README in your assigned feature folder for its requirements. Demo adapters supply props and synthetic fixtures; the reusable feature components must not make API or network requests.
 

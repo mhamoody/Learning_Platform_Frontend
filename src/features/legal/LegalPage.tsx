@@ -205,7 +205,7 @@ export default function LegalPage({
         </aside>
 
         <div className="min-w-0">
-          {sections.map((section, index) => (
+          {sections.map((section) => (
             <section
               key={section.id}
               id={section.id}

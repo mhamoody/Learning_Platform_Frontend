@@ -39,10 +39,10 @@ export default function LegalDemo({
   const currentDocument = legalDocuments[currentType]
 
   return (
-    <main
+    <div
       dir={lang === 'ar' ? 'rtl' : 'ltr'}
       lang={lang}
-      className="min-h-screen bg-slate-100 px-4 py-8 sm:px-6 sm:py-10"
+      className="legal-demo min-h-screen bg-slate-100 px-4 py-8 sm:px-6 sm:py-10"
     >
       <div className="mx-auto w-full max-w-[1040px]">
 
@@ -91,6 +91,6 @@ export default function LegalDemo({
         />
 
       </div>
-    </main>
+    </div>
   )
 }

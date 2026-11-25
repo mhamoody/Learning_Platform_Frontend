@@ -1,6 +1,6 @@
 # Task 1: Checkout summary
 
-**Status: not implemented.** Replace the placeholder in `CheckoutSummary.tsx`. Work inside this folder; shared routing and configuration are already provided.
+**Status: implemented** (`CheckoutSummary.tsx`, `pricing.ts`, `CheckoutDemo.tsx`, `CheckoutSummary.test.tsx`). Work stays inside this folder; shared routing and configuration are untouched.
 
 ## Contract
 
@@ -26,4 +26,16 @@ The loading prop supports the brief's loading state without a network request. L
 
 From the repository root: `npm run dev`, then visit `/checkout`. Run `npm run build`, `npm run lint`, and `npm test` before submitting.
 
-**Remaining:** checkout UI, local demo interactions, VAT/total calculations, and task-specific tests. Current callbacks are intentionally no-ops in the starter demo.
+## Implementation notes
+
+- `pricing.ts` holds the integer-halala maths: `total = price - discount` (discount capped at the price) and `VAT = round(total x 15 / 115)`. VAT is extracted from the price, not added.
+- The component keeps only the typed coupon code locally. With a coupon applied the field is read-only and shows Remove; while `isApplyingCoupon` is true the field, Apply and Pay are disabled and Apply shows a spinner.
+- The card sets its own `lang` and `dir` from the language prop. Layout uses logical properties and `<bdi>` around amounts, so RTL works independently of the surrounding app.
+- `/checkout` demo: a live card (`WELCOME20` works, any other code shows the error, 800 ms fake delay, callback log) and all four states side by side.
+
+## Test results
+
+Tests cover totals/included VAT, rounding, discount cap, both languages, applied/loading/error states and disabled Pay (via `react-dom/server`, no extra dependency).
+Local validation: build and lint pass; all 17 tests pass (14 checkout tests and 3 shared tests). Browser checks passed in English and Arabic at desktop, 375 px, and 320 px widths: coupon Apply/Remove, loading, errors, payment callbacks, independent writing direction, and no horizontal overflow.
+
+**Remaining:** no known Task 1 functionality gaps. Optional improvement: include automated click-level callback tests in the repository; those interactions have been verified in the browser. Payment processing and backend coupon validation are outside this frontend task.

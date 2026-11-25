@@ -22,15 +22,24 @@
 
 @media print {
   /* General print settings */
-  body {
+  body:has(.legal-document) {
     background: #ffffff !important;
     color: #000000 !important;
     font-size: 11pt;
   }
 
   /* Hide interactive elements */
-  .no-print {
+  body:has(.legal-document) .no-print {
     display: none !important;
+  }
+
+  /* Remove screen-only framing without affecting checkout printing. */
+  body:has(.legal-document) #main-content,
+  .legal-demo {
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
   }
 
   /* Remove document card styling */
@@ -81,7 +90,7 @@
   }
 
   /* Remove link styling */
-  a {
+  .legal-document a {
     color: #000000 !important;
     text-decoration: none !important;
   }

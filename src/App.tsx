@@ -13,6 +13,7 @@ const tasks = [
     description: { en: 'Item pricing, coupon states, totals, and included VAT.', ar: 'سعر المنتج وحالات رمز الخصم والإجمالي وضريبة القيمة المضافة المشمولة.' },
     path: '/checkout',
     folder: 'src/features/checkout/',
+    status: { en: 'Ready for review', ar: 'جاهز للمراجعة' },
   },
   {
     number: '02',
@@ -20,6 +21,7 @@ const tasks = [
     description: { en: 'A shared layout for Terms, Privacy, and Refund pages.', ar: 'قالب مشترك لصفحات الشروط والخصوصية والاسترداد.' },
     path: '/legal/terms',
     folder: 'src/features/legal/',
+    status: { en: 'Ready for review', ar: 'جاهز للمراجعة' },
   },
 ]
 
@@ -31,14 +33,14 @@ function Workspace({ lang }: { lang: Lang }) {
         {text({ en: 'Two tasks. One shared foundation.', ar: 'مهمتان على أساس مشترك.' }, lang)}
       </h1>
       <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
-        {text({ en: 'The project structure is ready. Open your task below and follow its README to begin. Both feature implementations are still pending.', ar: 'هيكل المشروع جاهز. افتح مهمتك أدناه واتبع ملف README الخاص بها للبدء. لم تُنفّذ الميزتان بعد.' }, lang)}
+        {text({ en: 'The checkout summary and legal page template are implemented and ready for review. Open a task below and follow its README for details.', ar: 'تم تنفيذ ملخص الدفع وقالب الصفحات القانونية، وهما جاهزان للمراجعة. افتح إحدى المهمتين أدناه وراجع ملف README الخاص بها للتفاصيل.' }, lang)}
       </p>
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {tasks.map((task) => (
           <Link key={task.path} to={task.path} className="group rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-violet-300 sm:p-8">
             <div className="flex items-center justify-between gap-4">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 text-sm font-semibold text-violet-800">{task.number}</span>
-              <span className="text-xs font-medium text-slate-500">{text({ en: 'To be implemented', ar: 'بانتظار التنفيذ' }, lang)}</span>
+              <span className="text-xs font-medium text-slate-500">{text(task.status, lang)}</span>
             </div>
             <h2 className="mt-6 text-xl font-semibold text-slate-950 group-hover:text-violet-800">{text(task.title, lang)}</h2>
             <p className="mt-3 leading-7 text-slate-600">{text(task.description, lang)}</p>
