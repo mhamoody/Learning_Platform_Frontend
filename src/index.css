@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply m-0 bg-slate-50 font-sans text-slate-900 antialiased;
+  }
+
+  button, a, input, select, textarea {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600;
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+}
