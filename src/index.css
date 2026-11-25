@@ -17,3 +17,72 @@
     cursor: pointer;
   }
 }
+
+
+
+@media print {
+  /* General print settings */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  /* Hide interactive elements */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Remove document card styling */
+  .legal-document {
+    width: 100% !important;
+    max-width: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  /* Remove unnecessary spacing */
+  .legal-document > header,
+  .legal-document > div {
+    padding: 0 !important;
+  }
+
+  /* Stack content vertically */
+  .legal-document > div {
+    display: block !important;
+  }
+
+  /* Table of contents */
+  .legal-toc {
+    position: static !important;
+    margin-bottom: 24px !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  /* Legal sections */
+  .legal-section {
+    max-width: none !important;
+    break-inside: auto;
+  }
+
+  .legal-section h2 {
+    break-after: avoid;
+  }
+
+  /* Prevent awkward paragraph breaks */
+  .legal-section p,
+  .legal-section li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Remove link styling */
+  a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+}

@@ -63,7 +63,7 @@ export default function App() {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-50 focus:rounded-lg focus:bg-white focus:p-3">
         {text({ en: 'Skip to content', ar: 'انتقل إلى المحتوى' }, lang)}
       </a>
-      <header className="border-b border-slate-200 bg-white">
+      <header className="no-print border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-5 px-5 py-5 sm:px-8">
           <Link to="/" className="text-lg font-semibold text-slate-950">{text({ en: 'Learning Platform', ar: 'منصة التعلّم' }, lang)}</Link>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
